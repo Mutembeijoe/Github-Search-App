@@ -1,3 +1,4 @@
+import { UserReposComponent } from './components/user-repos/user-repos.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -8,6 +9,7 @@ import { NotFoundPageComponent } from './components/not-found-page/not-found-pag
 const routes: Routes = [
   { path: 'home', component: GithubUserComponent, children: [
     { path: 'profile', component: UserProfileComponent },
+    { path: 'repos', component: UserReposComponent },
     { path: '', redirectTo: 'profile', pathMatch: 'full' }
   ] },
   { path: '', redirectTo: 'home' , pathMatch: 'full' },

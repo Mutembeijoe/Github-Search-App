@@ -8,13 +8,15 @@ import { GithubUserComponent } from './components/github-user/github-user.compon
 import { GithubService } from './services/github.service';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { UserReposComponent } from './components/user-repos/user-repos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GithubUserComponent,
     NotFoundPageComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    UserReposComponent
   ],
   imports: [
     BrowserModule,
