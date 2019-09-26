@@ -17,6 +17,6 @@ export class UserProfileComponent implements OnInit {
       this.user = user;
       console.log(this.user);
     });
-  }
+    }
 
 }
