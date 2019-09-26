@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { GithubUserComponent } from './components/github-user/github-user.component';
 import { GithubService } from './services/github.service';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GithubUserComponent,
-    NotFoundPageComponent
+    NotFoundPageComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
