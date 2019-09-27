@@ -7,13 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-repos.component.css']
 })
 export class UserReposComponent implements OnInit {
-
+  repos;
   constructor(private github: GithubService) { }
 
   ngOnInit() {
     this.github.getRepos()
     .subscribe(repos => {
-      console.log(repos);
+      this.repos = repos;
+      console.log(repos[0]);
     });
   }
 
