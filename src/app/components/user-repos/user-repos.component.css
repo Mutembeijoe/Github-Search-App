@@ -13,3 +13,6 @@
     display:flex;
     justify-content: space-between;
 }
+.updated{
+    font-size: small;
+}

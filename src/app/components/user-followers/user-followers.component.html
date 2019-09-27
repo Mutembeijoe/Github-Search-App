@@ -1,0 +1,8 @@
+<div class="followers-card my-3 w-75" *ngFor="let follower of followers">
+    <div class="avatar">
+        <img [src]="follower.avatar_url" alt="follower img" class="rounded">
+    </div>
+    <div class="details m-3">
+        <p>name : {{follower.login}}</p>
+    </div>
+</div>

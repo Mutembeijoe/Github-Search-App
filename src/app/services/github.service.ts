@@ -23,5 +23,8 @@ export class GithubService {
   getRepos() {
     return this.http.get(`${this.url}/${this.username}/repos?access_token=${this.apiKey}`);
   }
+  getFollowers() {
+    return this.http.get(`${this.url}/${this.username}/followers?access_token=${this.apiKey}`);
+  }
 
 }
