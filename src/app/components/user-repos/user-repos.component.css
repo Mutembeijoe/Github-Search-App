@@ -1,0 +1,15 @@
+.repo-card{
+    display:flex;
+    flex-direction: column;
+    min-height:150px;
+    justify-content: space-around;
+}
+
+.repo-header{
+    display: flex;
+    justify-content: space-between;
+}
+.repo-footer{
+    display:flex;
+    justify-content: space-between;
+}

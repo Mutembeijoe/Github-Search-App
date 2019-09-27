@@ -1,8 +1,11 @@
-<div *ngFor="let repo of repos" class="card w-75">
-    <div class="card-body">
-        <h5 class="card-title">{{repo.name}}</h5>
-        <p class="card-text">{{repo.description}}</p>
-        <a href="#" class="btn btn-primary">Button</a>
+<div *ngFor="let repo of repos" class="card repo-card w-75 p-3">
+    <div class="repo-header">
+        <h4>{{repo.name}}</h4>
+        <span>updated: {{repo.updated_at |amTimeAgo }}</span>
+    </div>
+    <div class="repo-desc">{{repo.description}}</div>
+    <div class="repo-footer">
+        <span>Language: {{repo.language}}</span>
+        <span>Created: {{repo.created_at | amDateFormat:'LL'}}</span>
     </div>
 </div>
-  
