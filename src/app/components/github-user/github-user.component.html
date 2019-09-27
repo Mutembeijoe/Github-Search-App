@@ -1,17 +1,19 @@
-<form class="form-inline my-5">
-    <input ngModel name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2" type="submit">Search</button>
+<form class="my-5">
+  <div class="row">
+    <input ngModel name="search" class="form-control col-sm-10" type="search" placeholder="Search" >
+    <button class="btn btn-outline-success col-sm-2" type="submit">Search</button>
+  </div>
 </form>
 
 <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link active" routerLink = 'profile'>Profile</a>
+      <a class="nav-link" routerLink = 'profile' routerLinkActive = 'active'>Profile</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#" routerLink = 'repos'>Repositories</a>
+      <a class="nav-link" routerLink = 'repos' routerLinkActive = 'active' >Repositories</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Followers</a>
+      <a class="nav-link"  routerLinkActive = 'active'>Followers</a>
     </li>
 </ul>
 
