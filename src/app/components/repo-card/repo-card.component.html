@@ -1,4 +1,4 @@
-<!-- <div *ngFor="let repo of repos" class="card repo-card w-75 p-3 my-3">
+<div *ngFor="let repo of repos" class="card repo-card w-75 p-3 my-3">
     <div class="repo-header">
         <h4>{{repo.name}}</h4>
         <span class="updated">updated: {{repo.updated_at |amTimeAgo }}</span>
@@ -8,5 +8,4 @@
         <span>Language: {{repo.language}}</span>
         <span>Created: {{repo.created_at | amDateFormat:'LL'}}</span>
     </div>
-</div> -->
-<app-repo-card [repos]="repos"></app-repo-card>
+</div>

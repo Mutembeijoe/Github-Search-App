@@ -10,6 +10,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class GithubUserComponent implements OnInit {
   username = 'Mutembeijoe';
   user;
+  repos: any[] = [];
+  searchType = 'user';
   constructor(private github: GithubService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -18,11 +20,21 @@ export class GithubUserComponent implements OnInit {
   }
 
   newQuery(value) {
-    this.username = value;
-    this.github.getUser(this.username)
-    .subscribe(user => {
-      this.router.navigate(['home']);
-      this.user = user;
-    });
+    if (this.searchType === 'user'){
+      this.username = value;
+      this.github.getUser(this.username)
+      .subscribe(user => {
+        console.log(user);
+        this.router.navigate(['home']);
+        this.user = user;
+      });
+    } else {
+      this.github.getRepository(value)
+      .subscribe(repo => {
+        this.repos.push(repo);
+      });
+      console.log(this.repos);
+      this.user = undefined;
+    }
   }
 }

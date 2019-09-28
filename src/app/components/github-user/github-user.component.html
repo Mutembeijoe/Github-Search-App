@@ -1,39 +1,49 @@
 <ng-progress></ng-progress>
-<input type="text" #query (keyup.enter)="newQuery(query.value)"class="form-control my-5" placeholder="Search....">
-
-<div class="profile" *ngIf="user">
-  <div class="personal-details">
-      <img [src]='user.avatar_url' class="img-fluid" alt="user_avatar">
-      <p class='m-3'><span class="username"></span>{{user.login}}</p>
-  </div>
-  <hr>
-  <div class="account-details">
-      <div>
-          <i class='fa fa-map-marker-alt'></i>
-          {{user.location}}
-      </div>
-      <div>
-          <span>Repos: </span>
-          {{user.public_repos}}
-      </div>
-      <div>
-          <span>Followers: </span>
-          {{user.followers}}
-      </div>
-      <div>
-          <span>Joined: </span>
-          {{user.created_at | date}}
-      </div>
-  </div>
+<div class="row my-4">
+    <input type="text" #query (keyup)="newQuery(query.value)"class="form-control col-8 col-sm-10" placeholder="Search....">
+    <select name="searchOption" (change)="newQuery(query.value)" [(ngModel)]="searchType" id="searchOption" class="form-control col-4 col-sm-2">
+        <option value="user">User</option>
+        <option value="repo">Repository</option>
+    </select>
+    {{searchType}}
 </div>
 
-<ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link" routerLink = 'repos' [state]="{data:{'username':username}}" routerLinkActive = 'active' >Repositories</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink = 'followers' [state]="{data:{'username':username}}" routerLinkActive = 'active'>Followers</a>
-    </li>
-</ul>
+<div *ngIf="user">
+    <div class="profile">
+        <div class="personal-details">
+            <img [src]='user.avatar_url' class="img-fluid" alt="user_avatar">
+            <p class='m-3'><span class="username"></span>{{user.login}}</p>
+        </div>
+        <hr>
+        <div class="account-details">
+            <div>
+                <i class='fa fa-map-marker-alt'></i>
+                {{user.location}}
+            </div>
+            <div>
+                <span>Repos: </span>
+                {{user.public_repos}}
+            </div>
+            <div>
+                <span>Followers: </span>
+                {{user.followers}}
+            </div>
+            <div>
+                <span>Joined: </span>
+                {{user.created_at | date}}
+            </div>
+        </div>
+    </div>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" routerLink = 'repos' [state]="{data:{'username':username}}" routerLinkActive = 'active' >Repositories</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink = 'followers' [state]="{data:{'username':username}}" routerLinkActive = 'active'>Followers</a>
+        </li>
+    </ul>
+    <router-outlet></router-outlet>
+</div>
 
-<router-outlet></router-outlet>
+
+

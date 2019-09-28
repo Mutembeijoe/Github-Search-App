@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MomentModule } from 'ngx-moment';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgProgressHttpModule } from '@ngx-progressbar/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,7 @@ import { GithubService } from './services/github.service';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { UserReposComponent } from './components/user-repos/user-repos.component';
 import { UserFollowersComponent } from './components/user-followers/user-followers.component';
+import { RepoCardComponent } from './components/repo-card/repo-card.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { UserFollowersComponent } from './components/user-followers/user-followe
     GithubUserComponent,
     NotFoundPageComponent,
     UserReposComponent,
-    UserFollowersComponent
+    UserFollowersComponent,
+    RepoCardComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,8 @@ import { UserFollowersComponent } from './components/user-followers/user-followe
     HttpClientModule,
     MomentModule,
     NgProgressModule,
-    NgProgressHttpModule
+    NgProgressHttpModule,
+    FormsModule
   ],
   providers: [
     GithubService

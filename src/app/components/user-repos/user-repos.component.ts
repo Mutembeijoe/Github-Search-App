@@ -15,7 +15,7 @@ export class UserReposComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.github.getRepos(this.username)
+    this.github.getUserRepos(this.username)
     .subscribe(repos => {
       this.repos = repos;
       // console.log(repos[0]);

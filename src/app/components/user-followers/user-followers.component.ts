@@ -15,7 +15,7 @@ export class UserFollowersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.github.getFollowers(this.username)
+    this.github.getUserFollowers(this.username)
     .subscribe(followers => {
       this.followers = followers;
       // console.log(this.followers);
