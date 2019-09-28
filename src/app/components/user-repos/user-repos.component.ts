@@ -11,14 +11,12 @@ export class UserReposComponent implements OnInit {
   username;
   constructor(private github: GithubService) {
     this.username = history.state.data ? history.state.data.username : 'Mutembeijoe';
-    console.log(history.state.data);
   }
 
   ngOnInit() {
     this.github.getUserRepos(this.username)
     .subscribe(repos => {
       this.repos = repos;
-      // console.log(repos[0]);
     });
   }
 

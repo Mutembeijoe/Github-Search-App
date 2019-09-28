@@ -1,8 +1,10 @@
+import { AppError } from './../../models/app-error';
 import { GithubService } from 'src/app/services/github.service';
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { fromEvent } from 'rxjs';
 import { debounceTime, pluck, distinctUntilChanged, filter } from 'rxjs/operators';
+import { NotFoundError } from 'src/app/models/not-found-error';
 
 @Component({
   selector: 'app-github-user',
@@ -19,7 +21,14 @@ export class GithubUserComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.github.getUser(this.username)
-    .subscribe(user => this.user = user);
+    .subscribe(user => this.user = user,
+    (error: AppError) => {
+      if (error instanceof NotFoundError) {
+        console.log('404 not found');
+      } else {
+        console.log('An unexpeted error occured,try checking your internet connection');
+      }
+    });
   }
   ngAfterViewInit() {
     fromEvent(this.input.nativeElement, 'keyup')
@@ -31,6 +40,13 @@ export class GithubUserComponent implements OnInit, AfterViewInit {
 
     ).subscribe(searchTerm => {
       this.newQuery(searchTerm);
+    },
+    (error: AppError) => {
+      if (error instanceof NotFoundError) {
+        console.log('404 not found');
+      } else {
+        console.log('An unexpeted error occured,try checking your internet connection');
+      }
     });
   }
 
@@ -41,6 +57,13 @@ export class GithubUserComponent implements OnInit, AfterViewInit {
       .subscribe(user => {
         this.user = user;
         this.router.navigate(['home']);
+      },
+      (error: AppError) => {
+        if (error instanceof NotFoundError) {
+          console.log('404 not found');
+        } else {
+          console.log('An unexpeted error occured,try checking your internet connection');
+        }
       });
     } else {
       this.repos = [];
@@ -48,6 +71,13 @@ export class GithubUserComponent implements OnInit, AfterViewInit {
       this.github.getRepository(value)
       .subscribe(repo => {
         this.repos.push(repo);
+      },
+      (error: AppError) => {
+        if (error instanceof NotFoundError) {
+          console.log('404 not found');
+        } else {
+          console.log('An unexpeted error occured,try checking your internet connection');
+        }
       });
       this.user = undefined;
     }
