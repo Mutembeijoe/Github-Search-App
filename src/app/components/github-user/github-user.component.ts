@@ -24,11 +24,12 @@ export class GithubUserComponent implements OnInit {
       this.username = value;
       this.github.getUser(this.username)
       .subscribe(user => {
-        console.log(user);
-        this.router.navigate(['home']);
         this.user = user;
+        this.router.navigate(['home']);
       });
     } else {
+      this.repos = [];
+      this.username = value;
       this.github.getRepository(value)
       .subscribe(repo => {
         this.repos.push(repo);

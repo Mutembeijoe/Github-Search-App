@@ -8,7 +8,7 @@
     {{searchType}}
 </div>
 
-<div *ngIf="user">
+<div *ngIf="user; else repoDisplay;">
     <div class="profile">
         <div class="personal-details">
             <img [src]='user.avatar_url' class="img-fluid" alt="user_avatar">
@@ -44,6 +44,10 @@
     </ul>
     <router-outlet></router-outlet>
 </div>
+
+<ng-template #repoDisplay>
+    <app-repo-card [repos]="repos"></app-repo-card>
+</ng-template>
 
 
 
