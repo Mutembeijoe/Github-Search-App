@@ -23,9 +23,15 @@ hr{
 .account-details{
     display:flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 .account-details > div{
     margin-left:20px;
+}
+.search{
+    border-top: none;
+    border-right: none;
+    border-left: none;
 }
 
 @media(max-width:768px){

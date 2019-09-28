@@ -1,6 +1,5 @@
 import { UserFollowersComponent } from './components/user-followers/user-followers.component';
 import { UserReposComponent } from './components/user-repos/user-repos.component';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { GithubUserComponent } from './components/github-user/github-user.component';

@@ -1,6 +1,6 @@
 <ng-progress></ng-progress>
-<div class="row my-4">
-    <input type="text" #query class="form-control col-8 col-sm-10" placeholder="Search....">
+<div class="row my-5">
+    <input type="text" #query class="form-control col-8 col-sm-10 search" placeholder="Search github user or repository ...">
     <select name="searchOption" (change)="newQuery(query.value)" [(ngModel)]="searchType" id="searchOption" class="form-control col-4 col-sm-2">
         <option value="user">User</option>
         <option value="repo">Repository</option>
@@ -17,7 +17,7 @@
         <div class="account-details">
             <div>
                 <i class='fa fa-map-marker-alt'></i>
-                {{user.location}}
+                {{user.location || 'unknown'}}
             </div>
             <div>
                 <span>Repos: </span>
@@ -33,7 +33,7 @@
             </div>
         </div>
     </div>
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs mt-3">
         <li class="nav-item">
             <a class="nav-link" routerLink = 'repos' [state]="{data:{'username':username}}" routerLinkActive = 'active' >Repositories</a>
         </li>
