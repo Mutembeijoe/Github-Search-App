@@ -9,10 +9,8 @@ import { NotFoundPageComponent } from './components/not-found-page/not-found-pag
 
 const routes: Routes = [
   { path: 'home', component: GithubUserComponent, children: [
-    { path: 'profile', component: UserProfileComponent },
     { path: 'repos', component: UserReposComponent },
-    { path: 'followers', component: UserFollowersComponent},
-    // { path: '', redirectTo: 'profile', pathMatch: 'full' }
+    { path: 'followers', component: UserFollowersComponent}
   ] },
   { path: '', redirectTo: 'home' , pathMatch: 'full' },
   { path: '**', component: NotFoundPageComponent }

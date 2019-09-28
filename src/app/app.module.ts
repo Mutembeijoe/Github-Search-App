@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { GithubUserComponent } from './components/github-user/github-user.component';
 import { GithubService } from './services/github.service';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserReposComponent } from './components/user-repos/user-repos.component';
 import { UserFollowersComponent } from './components/user-followers/user-followers.component';
 
@@ -17,7 +16,6 @@ import { UserFollowersComponent } from './components/user-followers/user-followe
     AppComponent,
     GithubUserComponent,
     NotFoundPageComponent,
-    UserProfileComponent,
     UserReposComponent,
     UserFollowersComponent
   ],
