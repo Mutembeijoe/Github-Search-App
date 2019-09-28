@@ -12,7 +12,7 @@ const routes: Routes = [
     { path: 'profile', component: UserProfileComponent },
     { path: 'repos', component: UserReposComponent },
     { path: 'followers', component: UserFollowersComponent},
-    { path: '', redirectTo: 'profile', pathMatch: 'full' }
+    // { path: '', redirectTo: 'profile', pathMatch: 'full' }
   ] },
   { path: '', redirectTo: 'home' , pathMatch: 'full' },
   { path: '**', component: NotFoundPageComponent }

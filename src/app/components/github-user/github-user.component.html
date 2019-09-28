@@ -1,19 +1,40 @@
-<form class="my-5">
-  <div class="row">
-    <input ngModel name="search" class="form-control col-sm-10" type="search" placeholder="Search" >
-    <button class="btn btn-outline-success col-sm-2" type="submit">Search</button>
+<input type="text" #query (keyup.enter)="newQuery(query.value)"class="form-control my-5" placeholder="Search....">
+
+<div class="profile" *ngIf="user">
+  <div class="personal-details">
+      <img [src]='user.avatar_url' class="img-fluid" alt="user_avatar">
+      <p class='m-3'><span class="username"></span>{{user.login}}</p>
   </div>
-</form>
+  <hr>
+  <div class="account-details">
+      <div>
+          <i class='fa fa-map-marker-alt'></i>
+          {{user.location}}
+      </div>
+      <div>
+          <span>Repos: </span>
+          {{user.public_repos}}
+      </div>
+      <div>
+          <span>Followers: </span>
+          {{user.followers}}
+      </div>
+      <div>
+          <span>Joined: </span>
+          {{user.created_at | date}}
+      </div>
+  </div>
+</div>
 
 <ul class="nav nav-tabs">
+    <!-- <li class="nav-item">
+      <a class="nav-link" routerLink = 'profile' [state]="{data:{'username':username}}" routerLinkActive = 'active'>Profile</a>
+    </li> -->
     <li class="nav-item">
-      <a class="nav-link" routerLink = 'profile' routerLinkActive = 'active'>Profile</a>
+      <a class="nav-link" routerLink = 'repos' [state]="{data:{'username':username}}" routerLinkActive = 'active' >Repositories</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" routerLink = 'repos' routerLinkActive = 'active' >Repositories</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink = 'followers' routerLinkActive = 'active'>Followers</a>
+      <a class="nav-link" routerLink = 'followers' [state]="{data:{'username':username}}" routerLinkActive = 'active'>Followers</a>
     </li>
 </ul>
 

@@ -8,13 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserFollowersComponent implements OnInit {
   followers;
-  constructor(private github: GithubService) { }
+  username;
+  constructor(private github: GithubService) {
+    this.username = history.state.data ? history.state.data.username : 'Mutembeijoe';
+    console.log(history.state.data);
+  }
 
   ngOnInit() {
-    this.github.getFollowers()
+    this.github.getFollowers(this.username)
     .subscribe(followers => {
       this.followers = followers;
-      console.log(this.followers);
+      // console.log(this.followers);
     });
   }
 

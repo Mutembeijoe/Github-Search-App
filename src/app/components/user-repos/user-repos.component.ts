@@ -8,13 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserReposComponent implements OnInit {
   repos;
-  constructor(private github: GithubService) { }
+  username;
+  constructor(private github: GithubService) {
+    this.username = history.state.data ? history.state.data.username : 'Mutembeijoe';
+    console.log(history.state.data);
+  }
 
   ngOnInit() {
-    this.github.getRepos()
+    this.github.getRepos(this.username)
     .subscribe(repos => {
       this.repos = repos;
-      console.log(repos[0]);
+      // console.log(repos[0]);
     });
   }
 

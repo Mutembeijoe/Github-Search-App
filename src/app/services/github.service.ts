@@ -7,24 +7,24 @@ import { HttpClient } from '@angular/common/http';
 export class GithubService {
   apiKey = '7166191a66db12b164d84ab1714e50c3eb3a221e';
   url = 'https://api.github.com/users';
-  username = 'Mutembeijoe';
+  // username = 'Mutembeijoe';
 
   constructor(private http: HttpClient) { }
 
-  getUser() {
-    return this.http.get(`${this.url}/${this.username}?access_token=${this.apiKey}`);
+  getUser(username) {
+    return this.http.get(`${this.url}/${username}?access_token=${this.apiKey}`);
   }
 
-  setUsername(username) {
-    this.username = username;
-    return this.getUser();
-  }
+  // setUsername(username) {
+  //   username = username;
+  //   this.getUser();
+  // }
 
-  getRepos() {
-    return this.http.get(`${this.url}/${this.username}/repos?access_token=${this.apiKey}`);
+  getRepos(username) {
+    return this.http.get(`${this.url}/${username}/repos?access_token=${this.apiKey}`);
   }
-  getFollowers() {
-    return this.http.get(`${this.url}/${this.username}/followers?access_token=${this.apiKey}`);
+  getFollowers(username) {
+    return this.http.get(`${this.url}/${username}/followers?access_token=${this.apiKey}`);
   }
 
 }
