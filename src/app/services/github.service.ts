@@ -17,10 +17,7 @@ export class GithubService {
   constructor(private http: HttpClient) { }
 
   getUser(username) {
-    return this.http.get(`${this.url}/${username}?access_token=${this.apiKey}`)
-    .pipe(
-      tap(data => console.log(data))
-    );
+    return this.http.get(`${this.url}/${username}?access_token=${this.apiKey}`);
   }
 
   getUserRepos(username) {

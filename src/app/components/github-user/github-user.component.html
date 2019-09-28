@@ -1,11 +1,10 @@
 <ng-progress></ng-progress>
 <div class="row my-4">
-    <input type="text" #query (keyup)="newQuery(query.value)"class="form-control col-8 col-sm-10" placeholder="Search....">
+    <input type="text" #query class="form-control col-8 col-sm-10" placeholder="Search....">
     <select name="searchOption" (change)="newQuery(query.value)" [(ngModel)]="searchType" id="searchOption" class="form-control col-4 col-sm-2">
         <option value="user">User</option>
         <option value="repo">Repository</option>
     </select>
-    {{searchType}}
 </div>
 
 <div *ngIf="user; else repoDisplay;">
