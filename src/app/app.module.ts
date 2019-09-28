@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { MomentModule } from 'ngx-moment';
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { NgProgressHttpModule } from '@ngx-progressbar/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,7 +25,9 @@ import { UserFollowersComponent } from './components/user-followers/user-followe
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    MomentModule
+    MomentModule,
+    NgProgressModule,
+    NgProgressHttpModule
   ],
   providers: [
     GithubService

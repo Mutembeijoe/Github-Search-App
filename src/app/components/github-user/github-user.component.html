@@ -1,3 +1,4 @@
+<ng-progress></ng-progress>
 <input type="text" #query (keyup.enter)="newQuery(query.value)"class="form-control my-5" placeholder="Search....">
 
 <div class="profile" *ngIf="user">
@@ -27,9 +28,6 @@
 </div>
 
 <ul class="nav nav-tabs">
-    <!-- <li class="nav-item">
-      <a class="nav-link" routerLink = 'profile' [state]="{data:{'username':username}}" routerLinkActive = 'active'>Profile</a>
-    </li> -->
     <li class="nav-item">
       <a class="nav-link" routerLink = 'repos' [state]="{data:{'username':username}}" routerLinkActive = 'active' >Repositories</a>
     </li>
