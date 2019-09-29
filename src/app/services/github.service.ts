@@ -44,6 +44,7 @@ export class GithubService {
       catchError(this.handleError)
     );
   }
+
   private handleError(error: Response) {
     if (error.status === 404) {
       return throwError(new NotFoundError());

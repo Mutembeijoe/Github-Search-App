@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { fromEvent } from 'rxjs';
 import { debounceTime, pluck, distinctUntilChanged, filter } from 'rxjs/operators';
 import { NotFoundError } from 'src/app/models/not-found-error';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-github-user',
@@ -17,16 +18,16 @@ export class GithubUserComponent implements OnInit, AfterViewInit {
   user;
   repos: any[] = [];
   searchType = 'user';
-  constructor(private github: GithubService, private router: Router) { }
+  constructor(private github: GithubService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.github.getUser(this.username)
     .subscribe(user => this.user = user,
     (error: AppError) => {
       if (error instanceof NotFoundError) {
-        console.log('404 not found');
+        this.toastr.error('Not Found', '404');
       } else {
-        console.log('An unexpeted error occured,try checking your internet connection');
+        this.toastr.error('An unexpeted error occured,try checking your internet connection');
       }
     });
   }
@@ -40,13 +41,6 @@ export class GithubUserComponent implements OnInit, AfterViewInit {
 
     ).subscribe(searchTerm => {
       this.newQuery(searchTerm);
-    },
-    (error: AppError) => {
-      if (error instanceof NotFoundError) {
-        console.log('404 not found');
-      } else {
-        console.log('An unexpeted error occured,try checking your internet connection');
-      }
     });
   }
 
@@ -60,9 +54,9 @@ export class GithubUserComponent implements OnInit, AfterViewInit {
       },
       (error: AppError) => {
         if (error instanceof NotFoundError) {
-          console.log('404 not found');
+          this.toastr.error('Not Found', '404');
         } else {
-          console.log('An unexpeted error occured,try checking your internet connection');
+          this.toastr.error('An unexpeted error occured,try checking your internet connection');
         }
       });
     } else {
@@ -74,9 +68,10 @@ export class GithubUserComponent implements OnInit, AfterViewInit {
       },
       (error: AppError) => {
         if (error instanceof NotFoundError) {
-          console.log('404 not found');
+          this.toastr.error('404 Not found', '404');
+          console.log('my 404 error');
         } else {
-          console.log('An unexpeted error occured,try checking your internet connection');
+          this.toastr.error('An unexpeted error occured,try checking your internet connection');
         }
       });
       this.user = undefined;
