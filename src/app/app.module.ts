@@ -17,6 +17,7 @@ import { UserReposComponent } from './components/user-repos/user-repos.component
 import { UserFollowersComponent } from './components/user-followers/user-followers.component';
 import { RepoCardComponent } from './components/repo-card/repo-card.component';
 import { ParseTreeResult } from '@angular/compiler';
+import { SummaryPipe } from './pipes/summary.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ParseTreeResult } from '@angular/compiler';
     NotFoundPageComponent,
     UserReposComponent,
     UserFollowersComponent,
-    RepoCardComponent
+    RepoCardComponent,
+    SummaryPipe
   ],
   imports: [
     BrowserModule,

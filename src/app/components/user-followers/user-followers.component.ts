@@ -19,7 +19,6 @@ export class UserFollowersComponent implements OnInit {
     this.state.$subject
     .subscribe((username: string) => {
       this.username = username;
-      console.log(this.username);
       this.getFollowers();
     });
   }
@@ -27,7 +26,6 @@ export class UserFollowersComponent implements OnInit {
     this.github.getUserFollowers(this.username)
     .then(followers => {
       this.followers = followers;
-      console.log(this.followers);
     });
   }
 

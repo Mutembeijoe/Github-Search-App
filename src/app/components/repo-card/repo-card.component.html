@@ -3,7 +3,7 @@
         <h4>{{repo.name}}</h4>
         <span class="updated">updated: {{repo.updated_at |amTimeAgo }}</span>
     </div>
-    <div class="repo-desc">{{repo.description}}</div>
+    <div class="repo-desc">{{repo.description | summary: 100}}</div>
     <div class="repo-footer">
         <span>Language: {{repo.language}}</span>
         <span>forks: {{repo.forks}}</span>
