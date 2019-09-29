@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Repo } from 'src/app/models/repo';
 
 @Component({
   selector: 'app-repo-card',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./repo-card.component.css']
 })
 export class RepoCardComponent implements OnInit {
-  @Input()repos;
+  @Input()repos: Repo[];
   constructor() { }
 
   ngOnInit() {
