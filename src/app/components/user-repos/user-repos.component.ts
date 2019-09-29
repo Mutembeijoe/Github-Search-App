@@ -26,7 +26,7 @@ export class UserReposComponent implements OnInit {
 
   getRepos() {
     this.github.getUserRepos(this.username)
-    .subscribe((repos: Repo[]) => {
+    .then((repos: Repo[]) => {
       this.repos = repos;
     });
   }

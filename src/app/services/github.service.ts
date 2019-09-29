@@ -4,7 +4,7 @@ import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { take, switchMap, catchError } from 'rxjs/operators';
-import { from, throwError } from 'rxjs';
+import { throwError, of } from 'rxjs';
 import { UnprocessableEntity } from '../models/unprocessable-entity';
 @Injectable({
   providedIn: 'root'
@@ -21,29 +21,29 @@ export class GithubService {
     return this.http.get(`${this.url}/${username}?access_token=${this.apiKey}`)
     .pipe(
       catchError(this.handleError)
-    );
+    ).toPromise();
   }
 
   getUserRepos(username) {
     return this.http.get(`${this.url}/${username}/repos?access_token=${this.apiKey}`)
     .pipe(
       catchError(this.handleError)
-    );
+    ).toPromise();
   }
   getUserFollowers(username) {
     return this.http.get(`${this.url}/${username}/followers?access_token=${this.apiKey}`)
     .pipe(
       catchError(this.handleError)
-    );
+    ).toPromise();
   }
 
   getRepository(repo) {
     return this.http.get(`${this.urlRepo}${repo}&sort=stars?access_token=${this.apiKey}`)
     .pipe(
-      switchMap(data => from(data['items'])),
+      switchMap(data => of(data['items'])),
       take(10),
       catchError(this.handleError)
-    );
+    ).toPromise();
   }
 
   private handleError(error: Response) {

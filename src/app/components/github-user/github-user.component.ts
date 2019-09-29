@@ -26,9 +26,8 @@ export class GithubUserComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.state.updateCurrentUsername(this.username);
-    // this.state.$subject.subscribe(data => console.log(data));
     this.github.getUser(this.username)
-    .subscribe((user: User) => this.user = user,
+    .then((user: User) => this.user = user,
     (error: AppError) => {
       if (error instanceof NotFoundError) {
         this.toastr.error('Not Found', '404');
@@ -56,7 +55,7 @@ export class GithubUserComponent implements OnInit, AfterViewInit {
       this.username = value;
       this.state.updateCurrentUsername(this.username);
       this.github.getUser(this.username)
-      .subscribe((user: User) => {
+      .then((user: User) => {
         this.user = user;
       },
       (error: AppError) => {
@@ -71,8 +70,10 @@ export class GithubUserComponent implements OnInit, AfterViewInit {
       this.username = value;
       this.state.updateCurrentUsername(this.username);
       this.github.getRepository(value)
-      .subscribe(repo => {
-        this.repos.push(repo);
+      .then( (repos: any[]) => {
+        repos.forEach(repo => {
+          this.repos.push(repo);
+        });
       },
       (error: AppError) => {
         if (error instanceof NotFoundError) {

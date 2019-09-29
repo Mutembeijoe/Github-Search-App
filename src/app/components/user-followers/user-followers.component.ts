@@ -25,7 +25,7 @@ export class UserFollowersComponent implements OnInit {
   }
   getFollowers() {
     this.github.getUserFollowers(this.username)
-    .subscribe(followers => {
+    .then(followers => {
       this.followers = followers;
       console.log(this.followers);
     });
