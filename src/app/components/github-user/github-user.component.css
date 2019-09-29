@@ -33,6 +33,13 @@ hr{
     border-right: none;
     border-left: none;
 }
+.username{
+    font-family: 'Fredoka One', cursive;
+    font-size: 30px;
+}
+.bio{
+    font-family: 'Courgette', cursive;
+}
 
 @media(max-width:768px){
     .personal-details{
