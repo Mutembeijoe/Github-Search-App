@@ -1,3 +1,4 @@
+import { User } from './../../models/user';
 import { AppError } from './../../models/app-error';
 import { GithubService } from 'src/app/services/github.service';
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
@@ -16,14 +17,14 @@ import { UnprocessableEntity } from 'src/app/models/unprocessable-entity';
 export class GithubUserComponent implements OnInit, AfterViewInit {
   @ViewChild('query', {static: false})input: ElementRef;
   username = 'Mutembeijoe';
-  user;
+  user: User;
   repos: any[] = [];
   searchType = 'user';
   constructor(private github: GithubService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.github.getUser(this.username)
-    .subscribe(user => this.user = user,
+    .subscribe((user: User) => this.user = user,
     (error: AppError) => {
       if (error instanceof NotFoundError) {
         this.toastr.error('Not Found', '404');
@@ -49,7 +50,7 @@ export class GithubUserComponent implements OnInit, AfterViewInit {
     if (this.searchType === 'user') {
       this.username = value;
       this.github.getUser(this.username)
-      .subscribe(user => {
+      .subscribe((user: User) => {
         this.user = user;
         this.router.navigate(['home']);
       },
