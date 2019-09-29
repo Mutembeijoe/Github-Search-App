@@ -1,4 +1,6 @@
 export class User {
+    // tslint:disable-next-line: variable-name
+    avatar_url: string;
     login: string;
     location: string;
     // tslint:disable-next-line: variable-name
