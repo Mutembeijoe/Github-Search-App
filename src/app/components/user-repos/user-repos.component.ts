@@ -1,3 +1,4 @@
+import { StateMaintainerService } from './../../services/state-maintainer.service';
 import { GithubService } from 'src/app/services/github.service';
 import { Component, OnInit } from '@angular/core';
 import { Repo } from 'src/app/models/repo';
@@ -10,15 +11,24 @@ import { Repo } from 'src/app/models/repo';
 export class UserReposComponent implements OnInit {
   repos: Repo[];
   username;
-  constructor(private github: GithubService) {
-    this.username = history.state.data ? history.state.data.username : 'Mutembeijoe';
+  constructor(private github: GithubService, private state: StateMaintainerService) {
+    // this.username = history.state.data ? history.state.data.username : 'Mutembeijoe';
+    this.username = this.state.username;
   }
 
   ngOnInit() {
+    this.getRepos();
+    this.state.$subject
+    .subscribe((username: string) => {
+      this.username = username;
+      this.getRepos();
+    });
+  }
+
+  getRepos() {
     this.github.getUserRepos(this.username)
     .subscribe((repos: Repo[]) => {
       this.repos = repos;
     });
   }
-
 }

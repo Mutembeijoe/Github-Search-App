@@ -1,3 +1,4 @@
+import { StateMaintainerService } from './../../services/state-maintainer.service';
 import { GithubService } from './../../services/github.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,16 +10,25 @@ import { Component, OnInit } from '@angular/core';
 export class UserFollowersComponent implements OnInit {
   followers;
   username;
-  constructor(private github: GithubService) {
-    this.username = history.state.data ? history.state.data.username : 'Mutembeijoe';
-    console.log(history.state.data);
+  constructor(private github: GithubService, private state: StateMaintainerService) {
+    // this.username = history.state.data ? history.state.data.username : 'Mutembeijoe';
+    this.username = this.state.username;
   }
 
   ngOnInit() {
+    this.getFollowers();
+    this.state.$subject
+    .subscribe((username: string) => {
+      this.username = username;
+      console.log(this.username);
+      this.getFollowers();
+    });
+  }
+  getFollowers() {
     this.github.getUserFollowers(this.username)
     .subscribe(followers => {
       this.followers = followers;
-      // console.log(this.followers);
+      console.log(this.followers);
     });
   }
 
