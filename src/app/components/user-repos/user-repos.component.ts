@@ -12,7 +12,6 @@ export class UserReposComponent implements OnInit {
   repos: Repo[];
   username;
   constructor(private github: GithubService, private state: StateMaintainerService) {
-    // this.username = history.state.data ? history.state.data.username : 'Mutembeijoe';
     this.username = this.state.username;
   }
 

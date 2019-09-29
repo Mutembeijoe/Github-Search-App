@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { of, Subject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

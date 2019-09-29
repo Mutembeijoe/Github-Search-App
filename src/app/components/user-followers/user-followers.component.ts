@@ -11,7 +11,6 @@ export class UserFollowersComponent implements OnInit {
   followers;
   username;
   constructor(private github: GithubService, private state: StateMaintainerService) {
-    // this.username = history.state.data ? history.state.data.username : 'Mutembeijoe';
     this.username = this.state.username;
   }
 
