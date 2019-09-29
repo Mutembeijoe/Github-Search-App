@@ -1,8 +1,9 @@
+import { StateMaintainerService } from './../../services/state-maintainer.service';
 import { User } from './../../models/user';
 import { AppError } from './../../models/app-error';
 import { GithubService } from 'src/app/services/github.service';
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { Router, ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { fromEvent } from 'rxjs';
 import { debounceTime, pluck, distinctUntilChanged, filter } from 'rxjs/operators';
 import { NotFoundError } from 'src/app/models/not-found-error';
@@ -20,9 +21,12 @@ export class GithubUserComponent implements OnInit, AfterViewInit {
   user: User;
   repos: any[] = [];
   searchType = 'user';
-  constructor(private route: ActivatedRoute, private github: GithubService, private router: Router, private toastr: ToastrService) { }
+  constructor(private github: GithubService, private router: Router, private toastr: ToastrService,
+              private state: StateMaintainerService) { }
 
   ngOnInit() {
+    this.state.updateCurrentUsername(this.username);
+    // this.state.$subject.subscribe(data => console.log(data));
     this.github.getUser(this.username)
     .subscribe((user: User) => this.user = user,
     (error: AppError) => {
@@ -33,6 +37,7 @@ export class GithubUserComponent implements OnInit, AfterViewInit {
       }
     });
   }
+
   ngAfterViewInit() {
     fromEvent(this.input.nativeElement, 'keyup')
     .pipe(
@@ -49,6 +54,7 @@ export class GithubUserComponent implements OnInit, AfterViewInit {
   newQuery(value) {
     if (this.searchType === 'user') {
       this.username = value;
+      this.state.updateCurrentUsername(this.username);
       this.github.getUser(this.username)
       .subscribe((user: User) => {
         this.user = user;
@@ -63,6 +69,7 @@ export class GithubUserComponent implements OnInit, AfterViewInit {
     } else {
       this.repos = [];
       this.username = value;
+      this.state.updateCurrentUsername(this.username);
       this.github.getRepository(value)
       .subscribe(repo => {
         this.repos.push(repo);
