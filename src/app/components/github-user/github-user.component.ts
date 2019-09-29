@@ -2,7 +2,7 @@ import { User } from './../../models/user';
 import { AppError } from './../../models/app-error';
 import { GithubService } from 'src/app/services/github.service';
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
 import { fromEvent } from 'rxjs';
 import { debounceTime, pluck, distinctUntilChanged, filter } from 'rxjs/operators';
 import { NotFoundError } from 'src/app/models/not-found-error';
@@ -20,7 +20,7 @@ export class GithubUserComponent implements OnInit, AfterViewInit {
   user: User;
   repos: any[] = [];
   searchType = 'user';
-  constructor(private github: GithubService, private router: Router, private toastr: ToastrService) { }
+  constructor(private route: ActivatedRoute, private github: GithubService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.github.getUser(this.username)
@@ -52,7 +52,6 @@ export class GithubUserComponent implements OnInit, AfterViewInit {
       this.github.getUser(this.username)
       .subscribe((user: User) => {
         this.user = user;
-        this.router.navigate(['home']);
       },
       (error: AppError) => {
         if (error instanceof NotFoundError) {
