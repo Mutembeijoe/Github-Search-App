@@ -6,6 +6,7 @@ import { fromEvent } from 'rxjs';
 import { debounceTime, pluck, distinctUntilChanged, filter } from 'rxjs/operators';
 import { NotFoundError } from 'src/app/models/not-found-error';
 import { ToastrService } from 'ngx-toastr';
+import { UnprocessableEntity } from 'src/app/models/unprocessable-entity';
 
 @Component({
   selector: 'app-github-user',
@@ -69,7 +70,8 @@ export class GithubUserComponent implements OnInit, AfterViewInit {
       (error: AppError) => {
         if (error instanceof NotFoundError) {
           this.toastr.error('404 Not found', '404');
-          console.log('my 404 error');
+        } else if (error instanceof UnprocessableEntity) {
+          this.toastr.info(`Missing field, Query cannot be blank`, '422');
         } else {
           this.toastr.error('An unexpeted error occured,try checking your internet connection');
         }

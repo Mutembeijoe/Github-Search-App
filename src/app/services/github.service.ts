@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { take, switchMap, catchError } from 'rxjs/operators';
 import { from, throwError } from 'rxjs';
+import { UnprocessableEntity } from '../models/unprocessable-entity';
 @Injectable({
   providedIn: 'root'
 })
@@ -48,6 +49,8 @@ export class GithubService {
   private handleError(error: Response) {
     if (error.status === 404) {
       return throwError(new NotFoundError());
+    } else if (error.status === 422) {
+      return throwError(new UnprocessableEntity(error));
     } else {
       return throwError(new AppError(error));
     }
